@@ -199,7 +199,8 @@ class FractionalDifferentiation:
         # transform the dictionary into a data frame
         output_df = pd.concat(output_df, axis=1)
         return output_df
-
+    
+    @staticmethod
     def plot_min_ffd(close_prices: pd.Series, max_d = 2, pval_threshold: float = 0.05):
         '''    
         params: close_price: pd.Series
@@ -225,7 +226,7 @@ class FractionalDifferentiation:
                 if df2[1] <= pval_threshold:
                     return d
             except:
-                p('Something is wrong! Most likely required d value more than 2!')
+                print('Something is wrong! Most likely required d value more than 2!')
         out[['adfStat', 'corr']].plot(secondary_y='adfStat', figsize=(10, 8))
         plt.axhline(out['95% conf'].mean(), linewidth=1, color='r', linestyle='dotted')
         return
